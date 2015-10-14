@@ -1,4 +1,13 @@
 {
     "name": "gyg/hhvm-h2tp-resources",
-    "description": "Some libraries out of the main getyourguide/fbthrift repo to avoid the inclusion of the full repo"
+    "description": "Some libraries out of the main getyourguide/fbthrift repo to avoid the inclusion of the full repo",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/getyourguide/hhvm-h2tp-resources"
+        }
+    ],
+    "require": {
+        "gyg/hhvm-h2tp-resources": "dev-master"
+    },
 }
