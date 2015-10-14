@@ -9,5 +9,5 @@
     ],
     "require": {
         "gyg/hhvm-h2tp-resources": "dev-master"
-    },
+    }
 }
