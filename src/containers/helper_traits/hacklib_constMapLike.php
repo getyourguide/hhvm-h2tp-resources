@@ -164,7 +164,7 @@ namespace HH {
         return $newObj;
       } else {
         throw new \InvalidArgumentException(
-          'Parameter it must be an instance of Iterable');
+          'Parameter it must be an instance of HHIterable');
       }
     }
 
@@ -181,7 +181,7 @@ namespace HH {
             $a[$k_actual] = $v[1];
           } else {
             throw new \InvalidArgumentException(
-              'Parameter must be an array or an instance of Iterable<Pair>');
+              'Parameter must be an array or an instance of HHIterable<Pair>');
           }
         }
         $m = new self();

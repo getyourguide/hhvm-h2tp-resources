@@ -540,7 +540,7 @@ class LazyMapIterator implements \HH\Iterator {
   }
 }
 
-class LazyMapIterable implements \HH\Iterable {
+class LazyMapIterable implements \HH\HHIterable {
   use LazyIterable;
 
   private $iterable;
@@ -682,7 +682,7 @@ class LazyFilterIterator implements \HH\Iterator {
   }
 }
 
-class LazyFilterIterable implements \HH\Iterable {
+class LazyFilterIterable implements \HH\HHIterable {
   use LazyIterable;
 
   private $iterable;
@@ -836,7 +836,7 @@ class LazyZipIterator implements \HH\Iterator {
   }
 }
 
-class LazyZipIterable implements \HH\Iterable {
+class LazyZipIterable implements \HH\HHIterable {
   use LazyIterable;
 
   private $iterable1;
@@ -931,7 +931,7 @@ class LazyTakeIterator implements \HH\Iterator {
   }
 }
 
-class LazyTakeIterable implements \HH\Iterable {
+class LazyTakeIterable implements \HH\HHIterable {
   use LazyIterable;
 
   private $iterable;
@@ -1028,7 +1028,7 @@ class LazyTakeWhileIterator implements \HH\Iterator {
   }
 }
 
-class LazyTakeWhileIterable implements \HH\Iterable {
+class LazyTakeWhileIterable implements \HH\HHIterable {
   use LazyIterable;
 
   private $iterable;
@@ -1074,7 +1074,7 @@ class LazyTakeWhileKeyedIterator implements \HH\Iterator {
   }
 }
 
-class LazyTakeWhileKeyedIterable implements \HH\Iterable {
+class LazyTakeWhileKeyedIterable implements \HH\HHIterable {
   use LazyIterable;
 
   private $iterable;
@@ -1128,7 +1128,7 @@ class LazySkipIterator implements \HH\Iterator {
   }
 }
 
-class LazySkipIterable implements \HH\Iterable {
+class LazySkipIterable implements \HH\HHIterable {
   use LazyIterable;
 
   private $iterable;
@@ -1234,7 +1234,7 @@ class LazySkipWhileIterator implements \HH\Iterator {
   }
 }
 
-class LazySkipWhileIterable implements \HH\Iterable {
+class LazySkipWhileIterable implements \HH\HHIterable {
   use LazyIterable;
 
   private $iterable;
@@ -1286,7 +1286,7 @@ class LazySkipWhileKeyedIterator implements \HH\Iterator {
   }
 }
 
-class LazySkipWhileKeyedIterable implements \HH\Iterable {
+class LazySkipWhileKeyedIterable implements \HH\HHIterable {
   use LazyIterable;
 
   private $iterable;
@@ -1349,7 +1349,7 @@ class LazySliceIterator implements \HH\Iterator {
   }
 }
 
-class LazySliceIterable implements \HH\Iterable {
+class LazySliceIterable implements \HH\HHIterable {
   use LazyIterable;
 
   private $iterable;
@@ -1459,7 +1459,7 @@ class LazyKeysIterator implements \HH\Iterator {
   }
 }
 
-class LazyKeysIterable implements \HH\Iterable {
+class LazyKeysIterable implements \HH\HHIterable {
   use LazyIterable;
 
   private $iterable;
@@ -1498,7 +1498,7 @@ class LazyValuesIterator implements \HH\Iterator {
   }
 }
 
-class LazyValuesIterable implements \HH\Iterable {
+class LazyValuesIterable implements \HH\HHIterable {
   use LazyIterable;
 
   private $iterable;
@@ -1537,7 +1537,7 @@ class LazyKVZipIterator implements \HH\Iterator {
   }
 }
 
-class LazyKVZipIterable implements \HH\Iterable {
+class LazyKVZipIterable implements \HH\HHIterable {
   use LazyIterable;
 
   private $iterable;
@@ -1599,7 +1599,7 @@ class LazyConcatIterator implements \HH\Iterator {
   }
 }
 
-class LazyConcatIterable implements \HH\Iterable {
+class LazyConcatIterable implements \HH\HHIterable {
   use LazyIterable;
 
   private $iterable1;
@@ -1615,7 +1615,7 @@ class LazyConcatIterable implements \HH\Iterable {
   }
 }
 
-class LazyIterableView implements \HH\Iterable {
+class LazyIterableView implements \HH\HHIterable {
   public $iterable;
 
   public function __construct($iterable) { $this->iterable = $iterable; }

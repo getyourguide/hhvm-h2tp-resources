@@ -94,10 +94,10 @@ namespace HH {
     public function valid();
   }
 
-  interface Iterable extends \HH\Traversable, \IteratorAggregate {
+  interface HHIterable extends \HH\Traversable, \IteratorAggregate {
   }
 
-  interface KeyedIterable extends \HH\Iterable, \HH\KeyedTraversable {
+  interface KeyedIterable extends \HH\HHIterable, \HH\KeyedTraversable {
     public function mapWithKey($callback);
     public function filterWithKey($callback);
     public function keys();
