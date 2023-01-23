@@ -69,13 +69,14 @@ namespace HH {
      * Returns true if the ImmSet is empty, false otherwise.
      */
     public function isEmpty() {
-      return $this->count() == 0;
+      return $this->count() === 0;
     }
 
     /**
      * Returns the number of elements in this ImmSet.
      */
-    public function count() {
+    public function count(): int
+    {
       return count($this->container);
     }
 
@@ -90,13 +91,15 @@ namespace HH {
     /**
      *  identical to containsKey, implemented for ArrayAccess
      */
-    public function offsetExists($offset) {
+    public function offsetExists($offset): bool
+    {
       return $this->hacklib_containsKey($offset)[0];
     }
 
     /**
      * implemented for ArrayAccess
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset) {
       list($contains, $k_actual) = $this->hacklib_containsKey($offset);
       if ($contains) {
@@ -106,7 +109,7 @@ namespace HH {
         throw new \OutOfBoundsException("Integer key $offset is not defined");
       } else {
         if (strlen($offset) > 100) {
-          $offset = "\"".substr($k, 0, 100)."\""." (truncated)";
+          $offset = "\"" . substr($k_actual, 0, 100) . "\"" . " (truncated)";
         } else {
           $offset = "\"$offset\"";
         }

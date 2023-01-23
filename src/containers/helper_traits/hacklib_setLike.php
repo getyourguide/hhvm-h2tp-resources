@@ -13,11 +13,13 @@ namespace HH {
   require_once(__DIR__.SEP.'hacklib_constSetLike.php');
   require_once(__DIR__.SEP.'hacklib_commonMutableContainerMethods.php');
 
-  trait HACKLIB_SetLike {
+  trait HACKLIB_SetLike
+  {
     use HACKLIB_ConstSetLike;
     use HACKLIB_CommonMutableContainerMethods;
 
-    public function offsetSet($offset, $value) {
+    public function offsetSet($offset, $value): void
+    {
       if (is_null($offset)) {
         $this->add($value);
       } else {
@@ -26,7 +28,8 @@ namespace HH {
       }
     }
 
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset): void
+    {
       $this->remove($offset);
     }
 
@@ -34,7 +37,8 @@ namespace HH {
      * Adds an element to this Set and returns itself. "$c->add($v)" is
      * equivalent to "$c[] = $v" (except that add() returns the Set).
      */
-    public function add($v) {
+    public function add($v)
+    {
       list($contained, $k_actual) = $this->hacklib_containsKey($v);
       if (!$contained) {
         $this->hacklib_expireAllIterators();

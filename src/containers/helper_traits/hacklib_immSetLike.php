@@ -10,33 +10,38 @@
  */
 
 namespace HH {
-  require_once(__DIR__.SEP.'hacklib_constSetLike.php');
-  require_once(__DIR__.SEP.'hacklib_commonImmMutableContainerMethods.php');
+  require_once(__DIR__ . SEP . 'hacklib_constSetLike.php');
+  require_once(__DIR__ . SEP . 'hacklib_commonImmMutableContainerMethods.php');
 
-  trait HACKLIB_ImmSetLike {
+  trait HACKLIB_ImmSetLike
+  {
     use HACKLIB_ConstSetLike;
     use HACKLIB_CommonImmMutableContainerMethods;
 
-    public function offsetSet($offset, $value) {
+    public function offsetSet($offset, $value): void
+    {
       if (is_null($offset)) {
         throw new \InvalidOperationException(
-          'Cannot modify immutable object of type '.get_class($this));
+          'Cannot modify immutable object of type ' . get_class($this));
       } else {
         throw new \InvalidOperationException(
           '[] operator cannot be used to modify elements of a Set');
       }
     }
 
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset): void
+    {
       throw new \InvalidOperationException(
-        'Cannot modify immutable object of type '.get_class($this));
+        'Cannot modify immutable object of type ' . get_class($this));
     }
 
-    public function immutable() {
+    public function immutable()
+    {
       return $this;
     }
 
-    protected function hacklib_isImmutable() {
+    protected function hacklib_isImmutable()
+    {
       return true;
     }
   }

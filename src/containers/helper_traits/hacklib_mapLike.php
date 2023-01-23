@@ -48,6 +48,7 @@ namespace HH {
     /**
      * identical to at, implemented for ArrayAccess
      */
+    #[\ReturnTypeWillChange]
     public function &offsetGet($offset) {
       list($contained, $k_actual) = $this->hacklib_containsKey($offset);
       if ($contained) {
@@ -57,7 +58,7 @@ namespace HH {
         throw new \OutOfBoundsException("Integer key $offset is not defined");
       } else {
         if (strlen($offset) > 100) {
-          $offset = "\"".substr($offset, 0, 100)."\""." (truncated)";
+          $offset = "\"" . substr($offset, 0, 100) . "\"" . " (truncated)";
         } else {
           $offset = "\"$offset\"";
         }
@@ -65,7 +66,8 @@ namespace HH {
       }
     }
 
-    public function offsetSet($offset, $value) {
+    public function offsetSet($offset, $value): void
+    {
       if (is_null($offset)) {
         $this->add($value);
       } else {
@@ -73,7 +75,8 @@ namespace HH {
       }
     }
 
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset): void
+    {
       list($contained, $k_actual) = $this->hacklib_containsKey($offset);
       if ($contained) {
         $this->hacklib_expireAllIterators();

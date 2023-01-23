@@ -64,7 +64,8 @@ namespace HH {
     /**
      * Returns the number of elements in this VectorLike.
      */
-    public function count() {
+    public function count(): int
+    {
       return count($this->container);
     }
 
@@ -103,7 +104,8 @@ namespace HH {
     /**
      *  identical to containsKey, implemented for ArrayAccess
      */
-    public function offsetExists($offset) {
+    public function offsetExists($offset): bool
+    {
       return $this->containsKey($offset) && $this->at($offset) !== null;
     }
 
