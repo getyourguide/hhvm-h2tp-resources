@@ -37,21 +37,25 @@ namespace HH {
       }
     }
 
-    public function offsetSet($offset, $value) {
+    public function offsetSet($offset, $value): void
+    {
       throw new \InvalidOperationException(
-        'Cannot modify immutable object of type '.get_class($this));
+        'Cannot modify immutable object of type ' . get_class($this));
     }
 
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset): void
+    {
       throw new \InvalidOperationException(
-        'Cannot modify immutable object of type '.get_class($this));
+        'Cannot modify immutable object of type ' . get_class($this));
     }
 
-    public function immutable() {
+    public function immutable()
+    {
       return $this;
     }
 
-    protected function hacklib_isImmutable() {
+    protected function hacklib_isImmutable()
+    {
       return true;
     }
   }

@@ -109,7 +109,7 @@ namespace HH {
     /**
      *  return the size of the given container
      */
-    public abstract function count();
+    public abstract function count(): int;
 
     /**
      *  create a new iterator of the required type.
@@ -119,7 +119,8 @@ namespace HH {
     /**
      * Returns an iterator that points to the beginning of this Container.
      */
-    public function getIterator() {
+    public function getIterator(): \Traversable
+    {
       $iterator = $this->hacklib_createNewIterator();
       $iterator->hacklib_init(
         $this->count(),

@@ -24,13 +24,15 @@ namespace HH {
     /**
      * identical to at, implemented for ArrayAccess
      */
-    public function &offsetGet($offset) {
+    public function &offsetGet($offset)
+    {
       $this->hacklib_validateKeyType($offset);
       $this->hacklib_validateKeyBounds($offset);
       return $this->container[$offset];
     }
 
-    public function offsetSet($offset, $value) {
+    public function offsetSet($offset, $value): void
+    {
       if (is_null($offset)) {
         $this->add($value);
       } else {
@@ -38,12 +40,13 @@ namespace HH {
       }
     }
 
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset): void
+    {
       throw new \RuntimeException(
-        'Cannot unset an element of a '.get_class($this));
+        'Cannot unset an element of a ' . get_class($this));
     }
 
-   /**
+    /**
      * Stores a value into the Vector with the specified key, overwriting the
      * previous value associated with the key. If the key is not present,
      * an exception is thrown. "$vec->set($k,$v)" is semantically equivalent

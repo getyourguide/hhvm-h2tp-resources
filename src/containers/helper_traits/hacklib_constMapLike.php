@@ -83,13 +83,14 @@ namespace HH {
      * Returns true if the MapLike is empty, false otherwise.
      */
     public function isEmpty() {
-      return $this->count() == 0;
+      return $this->count() === 0;
     }
 
     /**
      * Returns the number of key/value pairs in the MapLike.
      */
-    public function count() {
+    public function count(): int
+    {
       return count($this->container);
     }
 
@@ -128,7 +129,8 @@ namespace HH {
     /**
      *  identical to containsKey, implemented for ArrayAccess
      */
-    public function offsetExists($offset) {
+    public function offsetExists($offset): bool
+    {
       return $this->hacklib_containsKey($offset)[0] &&
         $this->at($offset) !== null;
     }
