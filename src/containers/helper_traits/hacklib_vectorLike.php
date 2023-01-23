@@ -24,6 +24,7 @@ namespace HH {
     /**
      * identical to at, implemented for ArrayAccess
      */
+    #[\ReturnTypeWillChange]
     public function &offsetGet($offset)
     {
       $this->hacklib_validateKeyType($offset);

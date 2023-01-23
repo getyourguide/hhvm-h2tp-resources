@@ -20,6 +20,7 @@ namespace HH {
     /**
      * identical to at, implemented for ArrayAccess
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset) {
       list($contained, $k_actual) = $this->hacklib_containsKey($offset);
       if ($contained) {

@@ -69,7 +69,7 @@ namespace HH {
      * Returns true if the ImmSet is empty, false otherwise.
      */
     public function isEmpty() {
-      return $this->count() == 0;
+      return $this->count() === 0;
     }
 
     /**
@@ -99,6 +99,7 @@ namespace HH {
     /**
      * implemented for ArrayAccess
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset) {
       list($contains, $k_actual) = $this->hacklib_containsKey($offset);
       if ($contains) {
@@ -108,7 +109,7 @@ namespace HH {
         throw new \OutOfBoundsException("Integer key $offset is not defined");
       } else {
         if (strlen($offset) > 100) {
-          $offset = "\"".substr($k, 0, 100)."\""." (truncated)";
+          $offset = "\"" . substr($k_actual, 0, 100) . "\"" . " (truncated)";
         } else {
           $offset = "\"$offset\"";
         }
