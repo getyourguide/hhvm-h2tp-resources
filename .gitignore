@@ -1,0 +1,7 @@
+### JetBrains
+.idea
+
+### macOS
+.DS_Store
+.AppleDouble
+.LSOverride
