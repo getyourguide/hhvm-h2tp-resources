@@ -15,32 +15,36 @@ namespace HH {
     private $index, $keyAndValue;
 
     /**
-     * @param count : The total size of the container.
-     * @param token : This is used to make sure that the iterator stops
+     * @param $count : The total size of the container.
+     * @param $token : This is used to make sure that the iterator stops
      *                   working once the container has been modified.
-     * @param getKeyAndValue : This is a function that, given the current index,
+     * @param $getKeyAndValue : This is a function that, given the current index,
      *                            returns the current key and value.
      */
-    public function hacklib_init($count, $token, $getKeyAndValue) {
+    public function hacklib_init($count, $token, $getKeyAndValue)
+    {
       $this->count = $count;
       $this->token = $token;
       $this->getKeyAndValue = $getKeyAndValue;
       $this->rewind();
     }
 
-    public function rewind() {
+    public function rewind(): void
+    {
       if ($this->token->isNotExpired()) {
         $this->index = 0;
         $this->keyAndValue = null;
       }
     }
 
-    public function next() {
+    public function next(): void
+    {
       $this->index++;
       $this->keyAndValue = null;
     }
 
-    private function currentKeyAndValue_UNSAFE() {
+    private function currentKeyAndValue_UNSAFE()
+    {
       if (!$this->keyAndValue) {
         $fn = $this->getKeyAndValue;
         $this->keyAndValue = $fn($this->index);
@@ -48,7 +52,8 @@ namespace HH {
       return $this->keyAndValue;
     }
 
-    private function validate() {
+    private function validate()
+    {
       if ($this->token->isExpired()) {
         throw new \InvalidOperationException(
           'Collection was modified during iteration');
@@ -58,17 +63,21 @@ namespace HH {
       }
     }
 
+    #[\ReturnTypeWillChange]
     public function current() {
       $this->validate();
       return $this->currentKeyAndValue_UNSAFE()[1];
     }
 
-    public function key() {
+    #[\ReturnTypeWillChange]
+    public function key()
+    {
       $this->validate();
       return $this->currentKeyAndValue_UNSAFE()[0];
     }
 
-    public function valid() {
+    public function valid(): bool
+    {
       return $this->index < $this->count;
     }
   }
