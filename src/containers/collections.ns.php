@@ -511,30 +511,46 @@ trait LazyKeyedIterable {
   }
 }
 
-class LazyMapIterator implements \HH\Iterator {
+class LazyMapIterator implements \HH\Iterator
+{
   private $it;
   private $fn;
 
-  public function __construct($it, $fn) {
+  public function __construct($it, $fn)
+  {
     $this->it = $it;
     $this->fn = $fn;
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $this->it->rewind();
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid();
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     $fn = $this->fn;
     return $fn($this->it->current());
   }
@@ -559,30 +575,46 @@ class LazyMapIterable implements \HH\HHIterable
   }
 }
 
-class LazyMapKeyedIterator implements \HH\KeyedIterator {
+class LazyMapKeyedIterator implements \HH\KeyedIterator
+{
   private $it;
   private $fn;
 
-  public function __construct($it, $fn) {
+  public function __construct($it, $fn)
+  {
     $this->it = $it;
     $this->fn = $fn;
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $this->it->rewind();
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid();
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     $fn = $this->fn;
     return $fn($this->it->current());
   }
@@ -607,30 +639,46 @@ class LazyMapKeyedIterable implements \HH\KeyedIterable
   }
 }
 
-class LazyMapWithKeyIterator implements \HH\KeyedIterator {
+class LazyMapWithKeyIterator implements \HH\KeyedIterator
+{
   private $it;
   private $fn;
 
-  public function __construct($it, $fn) {
+  public function __construct($it, $fn)
+  {
     $this->it = $it;
     $this->fn = $fn;
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $this->it->rewind();
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid();
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     $fn = $this->fn;
     return $fn($this->it->key(), $this->it->current());
   }
@@ -656,18 +704,24 @@ class LazyMapWithKeyIterable implements \HH\KeyedIterable
   }
 }
 
-class LazyFilterIterator implements \HH\Iterator {
+class LazyFilterIterator implements \HH\Iterator
+{
   private $it;
   private $fn;
 
-  public function __construct($it, $fn) {
+  public function __construct($it, $fn)
+  {
     $this->it = $it;
     $this->fn = $fn;
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $it = $this->it;
     $fn = $this->fn;
     $it->rewind();
@@ -675,10 +729,14 @@ class LazyFilterIterator implements \HH\Iterator {
       $it->next();
     }
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid();
   }
-  public function next() {
+
+  public function next(): void
+  {
     $it = $this->it;
     $fn = $this->fn;
     $it->next();
@@ -686,10 +744,16 @@ class LazyFilterIterator implements \HH\Iterator {
       $it->next();
     }
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->current();
   }
 }
@@ -713,18 +777,24 @@ class LazyFilterIterable implements \HH\HHIterable
   }
 }
 
-class LazyFilterKeyedIterator implements \HH\KeyedIterator {
+class LazyFilterKeyedIterator implements \HH\KeyedIterator
+{
   private $it;
   private $fn;
 
-  public function __construct($it, $fn) {
+  public function __construct($it, $fn)
+  {
     $this->it = $it;
     $this->fn = $fn;
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $it = $this->it;
     $fn = $this->fn;
     $it->rewind();
@@ -732,10 +802,14 @@ class LazyFilterKeyedIterator implements \HH\KeyedIterator {
       $it->next();
     }
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid();
   }
-  public function next() {
+
+  public function next(): void
+  {
     $it = $this->it;
     $fn = $this->fn;
     $it->next();
@@ -743,10 +817,16 @@ class LazyFilterKeyedIterator implements \HH\KeyedIterator {
       $it->next();
     }
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->current();
   }
 }
@@ -771,18 +851,24 @@ class LazyFilterKeyedIterable implements \HH\KeyedIterable
   }
 }
 
-class LazyFilterWithKeyIterator implements \HH\KeyedIterator {
+class LazyFilterWithKeyIterator implements \HH\KeyedIterator
+{
   private $it;
   private $fn;
 
-  public function __construct($it, $fn) {
+  public function __construct($it, $fn)
+  {
     $this->it = $it;
     $this->fn = $fn;
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $it = $this->it;
     $fn = $this->fn;
     $it->rewind();
@@ -790,10 +876,14 @@ class LazyFilterWithKeyIterator implements \HH\KeyedIterator {
       $it->next();
     }
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid();
   }
-  public function next() {
+
+  public function next(): void
+  {
     $it = $this->it;
     $fn = $this->fn;
     $it->next();
@@ -801,10 +891,16 @@ class LazyFilterWithKeyIterator implements \HH\KeyedIterator {
       $it->next();
     }
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->current();
   }
 }
@@ -828,33 +924,49 @@ class LazyFilterWithKeyIterable implements \HH\KeyedIterable {
   }
 }
 
-class LazyZipIterator implements \HH\Iterator {
+class LazyZipIterator implements \HH\Iterator
+{
   private $it1;
   private $it2;
 
-  public function __construct($it1, $it2) {
+  public function __construct($it1, $it2)
+  {
     $this->it1 = $it1;
     $this->it2 = $it2;
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it1 = clone $this->it1;
     $this->it2 = clone $this->it2;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $this->it1->rewind();
     $this->it2->rewind();
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return ($this->it1->valid() && $this->it2->valid());
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it1->next();
     $this->it2->next();
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it1->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return \HH\Pair::hacklib_new($this->it1->current(), $this->it2->current());
   }
 }
@@ -878,33 +990,49 @@ class LazyZipIterable implements \HH\HHIterable {
   }
 }
 
-class LazyZipKeyedIterator implements \HH\KeyedIterator {
+class LazyZipKeyedIterator implements \HH\KeyedIterator
+{
   private $it1;
   private $it2;
 
-  public function __construct($it1, $it2) {
+  public function __construct($it1, $it2)
+  {
     $this->it1 = $it1;
     $this->it2 = $it2;
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it1 = clone $this->it1;
     $this->it2 = clone $this->it2;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $this->it1->rewind();
     $this->it2->rewind();
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return ($this->it1->valid() && $this->it2->valid());
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it1->next();
     $this->it2->next();
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it1->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return \HH\Pair::hacklib_new($this->it1->current(), $this->it2->current());
   }
 }
@@ -928,34 +1056,50 @@ class LazyZipKeyedIterable implements \HH\KeyedIterable {
   }
 }
 
-class LazyTakeIterator implements \HH\Iterator {
+class LazyTakeIterator implements \HH\Iterator
+{
   private $it;
   private $n;
   private $numLeft;
 
-  public function __construct($it, $n) {
+  public function __construct($it, $n)
+  {
     $this->it = $it;
     $this->n = $n;
     $this->numLeft = $n;
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $this->it->rewind();
     $this->numLeft = $this->n;
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return ($this->numLeft > 0 && $this->it->valid());
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
     --$this->numLeft;
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->current();
   }
 }
@@ -979,34 +1123,50 @@ class LazyTakeIterable implements \HH\HHIterable {
   }
 }
 
-class LazyTakeKeyedIterator implements \HH\KeyedIterator {
+class LazyTakeKeyedIterator implements \HH\KeyedIterator
+{
   private $it;
   private $n;
   private $numLeft;
 
-  public function __construct($it, $n) {
+  public function __construct($it, $n)
+  {
     $this->it = $it;
     $this->n = $n;
     $this->numLeft = $n;
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $this->it->rewind();
     $this->numLeft = $this->n;
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return ($this->numLeft > 0 && $this->it->valid());
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
     --$this->numLeft;
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->current();
   }
 }
@@ -1030,35 +1190,51 @@ class LazyTakeKeyedIterable implements \HH\KeyedIterable {
   }
 }
 
-class LazyTakeWhileIterator implements \HH\Iterator {
+class LazyTakeWhileIterator implements \HH\Iterator
+{
   private $it;
   private $fn;
 
-  public function __construct($it, $fn) {
+  public function __construct($it, $fn)
+  {
     $this->it = $it;
     $this->fn = $fn;
     while ($it->valid() && $fn($it->current())) {
       $it->next();
     }
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $this->it->rewind();
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     $it = $this->it;
     $fn = $this->fn;
     return ($it->valid() && $fn($it->current()));
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->current();
   }
 }
@@ -1082,32 +1258,48 @@ class LazyTakeWhileIterable implements \HH\HHIterable {
   }
 }
 
-class LazyTakeWhileKeyedIterator implements \HH\Iterator {
+class LazyTakeWhileKeyedIterator implements \HH\Iterator
+{
   private $it;
   private $fn;
 
-  public function __construct($it, $fn) {
+  public function __construct($it, $fn)
+  {
     $this->it = $it;
     $this->fn = $fn;
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $this->it->rewind();
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     $it = $this->it;
     $fn = $this->fn;
     return ($it->valid() && $fn($it->current()));
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->current();
   }
 }
@@ -1131,11 +1323,13 @@ class LazyTakeWhileKeyedIterable implements \HH\HHIterable {
   }
 }
 
-class LazySkipIterator implements \HH\Iterator {
+class LazySkipIterator implements \HH\Iterator
+{
   private $it;
   private $n;
 
-  public function __construct($it, $n) {
+  public function __construct($it, $n)
+  {
     $this->it = $it;
     $this->n = $n;
     while ($n > 0 && $it->valid()) {
@@ -1143,10 +1337,14 @@ class LazySkipIterator implements \HH\Iterator {
       --$n;
     }
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $it = $this->it;
     $n = $this->n;
     $it->rewind();
@@ -1155,16 +1353,26 @@ class LazySkipIterator implements \HH\Iterator {
       --$n;
     }
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid();
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->current();
   }
 }
@@ -1188,11 +1396,13 @@ class LazySkipIterable implements \HH\HHIterable {
   }
 }
 
-class LazySkipKeyedIterator implements \HH\KeyedIterator {
+class LazySkipKeyedIterator implements \HH\KeyedIterator
+{
   private $it;
   private $n;
 
-  public function __construct($it, $n) {
+  public function __construct($it, $n)
+  {
     $this->it = $it;
     $this->n = $n;
     while ($n > 0 && $it->valid()) {
@@ -1200,10 +1410,14 @@ class LazySkipKeyedIterator implements \HH\KeyedIterator {
       --$n;
     }
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $it = $this->it;
     $n = $this->n;
     $it->rewind();
@@ -1212,16 +1426,26 @@ class LazySkipKeyedIterator implements \HH\KeyedIterator {
       --$n;
     }
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid();
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->current();
   }
 }
@@ -1245,21 +1469,27 @@ class LazySkipKeyedIterable implements \HH\KeyedIterable {
   }
 }
 
-class LazySkipWhileIterator implements \HH\Iterator {
+class LazySkipWhileIterator implements \HH\Iterator
+{
   private $it;
   private $fn;
 
-  public function __construct($it, $fn) {
+  public function __construct($it, $fn)
+  {
     $this->it = $it;
     $this->fn = $fn;
     while ($it->valid() && $fn($it->current())) {
       $it->next();
     }
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $it = $this->it;
     $fn = $this->fn;
     $it->rewind();
@@ -1267,16 +1497,26 @@ class LazySkipWhileIterator implements \HH\Iterator {
       $it->next();
     }
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid();
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->current();
   }
 }
@@ -1300,21 +1540,27 @@ class LazySkipWhileIterable implements \HH\HHIterable {
   }
 }
 
-class LazySkipWhileKeyedIterator implements \HH\Iterator {
+class LazySkipWhileKeyedIterator implements \HH\Iterator
+{
   private $it;
   private $fn;
 
-  public function __construct($it, $fn) {
+  public function __construct($it, $fn)
+  {
     $this->it = $it;
     $this->fn = $fn;
     while ($it->valid() && $fn($it->current())) {
       $it->next();
     }
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $it = $this->it;
     $fn = $this->fn;
     $it->rewind();
@@ -1322,16 +1568,26 @@ class LazySkipWhileKeyedIterator implements \HH\Iterator {
       $it->next();
     }
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid();
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->current();
   }
 }
@@ -1355,13 +1611,15 @@ class LazySkipWhileKeyedIterable implements \HH\HHIterable {
   }
 }
 
-class LazySliceIterator implements \HH\Iterator {
+class LazySliceIterator implements \HH\Iterator
+{
   private $it;
   private $start;
   private $len;
   private $currentLen;
 
-  public function __construct($it, $start, $len) {
+  public function __construct($it, $start, $len)
+  {
     $this->it = $it;
     $this->start = $start;
     $this->len = $len;
@@ -1371,10 +1629,14 @@ class LazySliceIterator implements \HH\Iterator {
       --$start;
     }
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $it = $this->it;
     $start = $this->start;
     $len = $this->len;
@@ -1385,19 +1647,29 @@ class LazySliceIterator implements \HH\Iterator {
       --$start;
     }
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid() && $this->currentLen !== 0;
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
     if ($this->currentLen !== 0) {
       --$this->currentLen;
     }
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->current();
   }
 }
@@ -1424,13 +1696,15 @@ class LazySliceIterable implements \HH\HHIterable {
   }
 }
 
-class LazySliceKeyedIterator implements \HH\KeyedIterator {
+class LazySliceKeyedIterator implements \HH\KeyedIterator
+{
   private $it;
   private $start;
   private $len;
   private $currentLen;
 
-  public function __construct($it, $start, $len) {
+  public function __construct($it, $start, $len)
+  {
     $this->it = $it;
     $this->start = $start;
     $this->len = $len;
@@ -1440,10 +1714,14 @@ class LazySliceKeyedIterator implements \HH\KeyedIterator {
       --$start;
     }
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $it = $this->it;
     $start = $this->start;
     $len = $this->len;
@@ -1454,19 +1732,29 @@ class LazySliceKeyedIterator implements \HH\KeyedIterator {
       --$start;
     }
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid() && $this->currentLen !== 0;
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
     if ($this->currentLen !== 0) {
       --$this->currentLen;
     }
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->it->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->current();
   }
 }
@@ -1492,28 +1780,45 @@ class LazySliceKeyedIterable implements \HH\KeyedIterable {
       $this->len);
   }
 }
-class LazyKeysIterator implements \HH\Iterator {
+
+class LazyKeysIterator implements \HH\Iterator
+{
   private $it;
 
-  public function __construct($it) {
+  public function __construct($it)
+  {
     $this->it = $it;
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $this->it->rewind();
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid();
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return null;
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->key();
   }
 }
@@ -1534,28 +1839,44 @@ class LazyKeysIterable implements \HH\HHIterable {
   }
 }
 
-class LazyValuesIterator implements \HH\Iterator {
+class LazyValuesIterator implements \HH\Iterator
+{
   private $it;
 
-  public function __construct($it) {
+  public function __construct($it)
+  {
     $this->it = $it;
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $this->it->rewind();
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid();
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return null;
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->it->current();
   }
 }
@@ -1576,28 +1897,44 @@ class LazyValuesIterable implements \HH\HHIterable {
   }
 }
 
-class LazyKVZipIterator implements \HH\Iterator {
+class LazyKVZipIterator implements \HH\Iterator
+{
   private $it;
 
-  public function __construct($it) {
+  public function __construct($it)
+  {
     $this->it = $it;
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it = clone $this->it;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $this->it->rewind();
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->it->valid();
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->it->next();
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return null;
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return \HH\Pair::hacklib_new($this->it->key(), $this->it->current());
   }
 }
@@ -1618,13 +1955,15 @@ class LazyKVZipIterable implements \HH\HHIterable {
   }
 }
 
-class LazyConcatIterator implements \HH\Iterator {
+class LazyConcatIterator implements \HH\Iterator
+{
   private $it1;
   private $it2;
   private $currentIt;
   private $state;
 
-  public function __construct($it1, $it2) {
+  public function __construct($it1, $it2)
+  {
     $this->it1 = $it1;
     $this->it2 = $it2;
     $this->currentIt = $it1;
@@ -1634,12 +1973,16 @@ class LazyConcatIterator implements \HH\Iterator {
       $this->state = 2;
     }
   }
-  public function __clone() {
+
+  public function __clone()
+  {
     $this->it1 = clone $this->it1;
     $this->it2 = clone $this->it2;
     $this->currentIt = ($this->state === 1) ? $this->it1 : $this->it2;
   }
-  public function rewind() {
+
+  public function rewind(): void
+  {
     $this->it1->rewind();
     $this->it2->rewind();
     $this->currentIt = $this->it1;
@@ -1649,20 +1992,30 @@ class LazyConcatIterator implements \HH\Iterator {
       $this->state = 2;
     }
   }
-  public function valid() {
+
+  public function valid(): bool
+  {
     return $this->currentIt->valid();
   }
-  public function next() {
+
+  public function next(): void
+  {
     $this->currentIt->next();
     if ($this->state === 1 && !$this->currentIt->valid()) {
       $this->currentIt = $this->it2;
       $this->state = 2;
     }
   }
-  public function key() {
+
+  #[\ReturnTypeWillChange]
+  public function key()
+  {
     return $this->currentIt->key();
   }
-  public function current() {
+
+  #[\ReturnTypeWillChange]
+  public function current()
+  {
     return $this->currentIt->current();
   }
 }
